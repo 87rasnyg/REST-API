@@ -13,13 +13,13 @@ router.get("/api/movies", (req, res) => {
 });
 
 router.post("/api/movies", (req, res) => {
-    const {title, released, duration} = req.body;
+    const { title, released, duration } = req.body;
 
     //get current index
-    if(movieList.length > 0){
-        id = movieList[movieList.length-1].id + 1;
+    if (movieList.length > 0) {
+        id = movieList[movieList.length - 1].id + 1;
     }
-    else{
+    else {
         id = 0;
     }
 
@@ -33,6 +33,20 @@ router.post("/api/movies", (req, res) => {
     movieList.push(movie);
 
     res.status(201).json(movie);
+});
+
+router.delete("/api/movies/:id", (req, res) => {
+    const { id } = req.params;
+    const movieIndex = movieList.findIndex(movie => movie.id == id);
+    if (movieIndex >= 0) {
+        console.log(movieIndex);
+        movieList.splice(movieIndex, 1);
+        res.status(204).json();
+    }
+    else {
+        res.status(400).json("Mo movie with an id of " + id + " was found");
+    }
+
 });
 
 module.exports = router;

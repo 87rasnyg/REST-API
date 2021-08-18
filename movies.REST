@@ -10,3 +10,7 @@ Content-Type: application/json
     "released": 1941,
     "duration": 119   
 }
+
+###
+
+DELETE http://localhost:3000/api/movies/1
