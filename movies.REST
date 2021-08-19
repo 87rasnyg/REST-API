@@ -13,4 +13,15 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/movies/1
+PUT http://localhost:3000/api/movies/0
+Content-Type: application/json
+
+{
+    "title": "The Matrix",
+    "released": 1999,
+    "duration": 136   
+}
+
+###
+
+DELETE http://localhost:3000/api/movies/0

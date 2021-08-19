@@ -35,11 +35,32 @@ router.post("/api/movies", (req, res) => {
     res.status(201).json(movie);
 });
 
+router.put("/api/movies/:id", (req, res) => {
+    const { id } = req.params;
+    const { title, released, duration } = req.body;
+    const movie = movieList.find(movie => movie.id == id);
+
+    if (movie) {
+        if (title) {
+            movie.title = title;
+        }
+        if (released) {
+            movie.released = released;
+        }
+        if (duration) {
+            movie.duration = duration;
+        }
+        res.status(200).json("Changes was made to specified movie");
+    }
+    else {
+        res.status(400).json("Mo movie with an id of " + id + " was found");
+    }
+});
+
 router.delete("/api/movies/:id", (req, res) => {
     const { id } = req.params;
     const movieIndex = movieList.findIndex(movie => movie.id == id);
     if (movieIndex >= 0) {
-        console.log(movieIndex);
         movieList.splice(movieIndex, 1);
         res.status(204).json();
     }
