@@ -20,21 +20,13 @@ function checkValidation(req, res, next) {
     }
 }
 
-const saveMovieValidation = [
+const MovieValidation = [
     body("title").notEmpty(),
     body("released").notEmpty().isFloat({ min: 1888, max: new Date().getFullYear()}),
     body("duration").notEmpty().isFloat({min: 1}),
     checkValidation
 ]
 
-const updateMovieValidation = [
-    body("title").exists(),
-    body("released").exists(),
-    body("duration").exists(),
-    checkValidation
-]
-
 module.exports = {
-    saveMovieValidation,
-    updateMovieValidation
+    MovieValidation
 }

@@ -22,7 +22,6 @@ function getMovies(req, res) {
  * @param {Response} res
  */
 function postMovie(req, res) {
-    const { title, released, duration } = req.body;
 
     //get current index
     if (movieList.length > 0) {
@@ -32,12 +31,7 @@ function postMovie(req, res) {
         id = 0;
     }
 
-    const movie = {
-        id: id,
-        title: title,
-        released: released,
-        duration: duration
-    }
+    const movie = { id: id, ...req.body };
 
     movieList.push(movie);
 
@@ -53,20 +47,14 @@ function postMovie(req, res) {
  */
 function updateMovie(req, res) {
     const { id } = req.params;
-    const { title, released, duration } = req.body;
-    const movie = movieList.find(movie => movie.id == id);
+    //const { title, released, duration } = req.body;
+    //let movie = movieList.find(movie => movie.id == id);
+    const movieIndex = movieList.findIndex(movie => movie.id == id);
 
-    if (movie) {
-        if (title) {
-            movie.title = title;
-        }
-        if (released) {
-            movie.released = released;
-        }
-        if (duration) {
-            movie.duration = duration;
-        }
-        res.status(200).json("Changes was made to specified movie");
+    if (movieIndex >= 0) {
+        const updatedMovie = { id: parseInt(id), ...req.body };
+        movieList.splice(movieIndex, 1, updatedMovie);
+        res.status(200).json(updatedMovie);
     }
     else {
         res.status(404).json("Mo movie with an id of " + id + " was found");
