@@ -8,7 +8,6 @@ const { body, valdidationResult, validationResult } = require("express-validator
  * @param {Response} res
  * @param {NextFunction} next
  */
-
 function checkValidation(req, res, next) {
     const errors = validationResult(req);
 
