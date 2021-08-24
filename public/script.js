@@ -17,14 +17,6 @@ function main() {
     deleteMovieForm.addEventListener("submit", deleteMovie);
 }
 
-function makeFormToObjectInJson(form) {
-
-    const formData = new FormData(form);
-    const plainFormData = Object.fromEntries(formData.entries());
-
-    return JSON.stringify(plainFormData);
-}
-
 async function fetchAllMovies(event) {
     const response = await fetch("/api/movies");
 
@@ -81,7 +73,7 @@ async function fetchSpecificMovie(event){
                                 </tr>`;
     }
     else {
-        alert("Something went wrong");
+        alert("Something went wrong:\n" + await response.text());
     }
 }
 
@@ -144,4 +136,12 @@ async function deleteMovie() {
     else {
         alert("something went wrong:\n" + await response.text());
     }
+}
+
+function makeFormToObjectInJson(form) {
+
+    const formData = new FormData(form);
+    const plainFormData = Object.fromEntries(formData.entries());
+
+    return JSON.stringify(plainFormData);
 }
