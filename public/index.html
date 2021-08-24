@@ -10,16 +10,23 @@
 </head>
 <body>
     <div>
-        <button class="getMovies">Get All Movies</button>
-        <div class="movieList"></div>
+        <button class="getMovies">List All Movies</button>
+        <div>
+            <table class="movieTable"></table>
+        </div>
     </div>
+    <div>Get Movie</div>
     <div>
         <form class="postMovieForm">
-            test: <input type="text" name="test">
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+            <label for="released">Released:</label><br>
+            <input type="number" id="released" name="released"><br>
+            <label for="duration">Duration:</label><br>
+            <input type="number" id="duration" name="duration"><br><br>
             <input type="submit" value="Submit">
         </form>
     </div>
-    <div>Post Movie</div>
     <div>Put Movie</div>
     <div>Delete Movie</div>
 </body>

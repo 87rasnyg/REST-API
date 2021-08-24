@@ -1,22 +1,71 @@
 window.addEventListener("load", main);
 
-function main(){
+function main() {
     const getMoviesButton = document.querySelector(".getMovies");
     getMoviesButton.addEventListener("click", fetchAllMovies);
+
+    const postMovieForm = document.querySelector(".postMovieForm");
+    postMovieForm.addEventListener("submit", postMovie);
 }
 
-async function fetchAllMovies(event){
+function makeFormToObjectInJson(form) {
+    //event.preventDefault();
+
+    const formData = new FormData(form);
+    const plainFormData = Object.fromEntries(formData.entries());
+
+    return JSON.stringify(plainFormData);
+}
+
+async function fetchAllMovies(event) {
     const response = await fetch("/api/movies");
-    const movieList = await response.json();
-    const movieListDiv = document.querySelector(".movieList");
-    movieListDiv.innerHTML = "";
 
-    movieList.forEach(movie => {
-        let movieitem = "<dt>Id</dt> <dd>- " + movie.id + "</dd>";
-        movieitem += "<dt>Title</dt> <dd>- " + movie.title + "</dd>";
-        movieitem += "<dt>Released</dt> <dd>- " + movie.released + "</dd>";
-        movieitem += "<dt>Duration</dt> <dd>- " + movie.duration + "</dd>";
+    if (response.ok) {
+        const movieList = await response.json();
+        const movieTable = document.querySelector(".movieTable");
+        movieTable.innerHTML = `<tr> 
+                                    <th>ID</th> 
+                                    <th>Title</th> 
+                                    <th>Released</th> 
+                                    <th>Duration</th> 
+                                </tr> `;
 
-        movieListDiv.innerHTML += movieitem;
-    }); 
+        
+        movieList.forEach(movie => {
+
+            const movieitem =`<tr>
+                                <td> ${movie.id} </td> 
+                                <td> ${movie.title} </td> 
+                                <td> ${movie.released} </td> 
+                                <td> ${movie.duration} </td>
+                              </tr>`
+
+            movieTable.innerHTML += movieitem;
+        }); 
+        
+    }
+    else {
+        alert("Something went wrong");
+    }
+
+}
+
+async function postMovie(event) {
+    const jsonDataToSend = makeFormToObjectInJson(event.currentTarget);
+
+    const response = await fetch("/api/movies", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: jsonDataToSend,
+    });
+
+    if (response.ok) {
+        alert(await response.text() + " was added to the DB");
+    }
+    else {
+        alert("something went wrong:\n" + await response.text());
+    }
 }

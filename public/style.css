@@ -4,6 +4,8 @@ body{
     justify-content: space-around;
 }
 
-.movieList{
+table, th, td {
     background-color: white;
+    border: 1px solid black;
+    border-collapse: collapse;
 }
