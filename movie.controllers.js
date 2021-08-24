@@ -28,11 +28,11 @@ function getMovie(req, res) {
 
     const movie = movieList.find(movie => movie.id == id);
 
-    if(movie){
+    if (movie) {
         res.status(200).json(movie);
     }
-    else{
-        res.status(404).json("Mo movie with an id of " + id + " was found");
+    else {
+        res.status(404).json("No movie with an id of " + id + " was found");
     }
 }
 
@@ -78,7 +78,7 @@ function updateMovie(req, res) {
         res.status(200).json(updatedMovie);
     }
     else {
-        res.status(404).json("Mo movie with an id of " + id + " was found");
+        res.status(404).json("No movie with an id of " + id + " was found");
     }
 }
 
@@ -90,6 +90,7 @@ function updateMovie(req, res) {
  */
 function deleteMovie(req, res) {
     const { id } = req.params;
+
     const movieIndex = movieList.findIndex(movie => movie.id == id);
 
     if (movieIndex >= 0) {
@@ -97,7 +98,7 @@ function deleteMovie(req, res) {
         res.status(204).json();
     }
     else {
-        res.status(404).json("Mo movie with an id of " + id + " was found");
+        res.status(404).json("No movie with an id of " + id + " was found");
     }
 }
 

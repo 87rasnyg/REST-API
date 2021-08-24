@@ -4,6 +4,9 @@ function main() {
     const getMoviesButton = document.querySelector(".getMovies");
     getMoviesButton.addEventListener("click", fetchAllMovies);
 
+    const getMovieForm = document.querySelector(".getMovieForm");
+    getMovieForm.addEventListener("submit", fetchSpecificMovie);
+
     const postMovieForm = document.querySelector(".postMovieForm");
     postMovieForm.addEventListener("submit", postMovie);
 
@@ -15,7 +18,6 @@ function main() {
 }
 
 function makeFormToObjectInJson(form) {
-    //event.preventDefault();
 
     const formData = new FormData(form);
     const plainFormData = Object.fromEntries(formData.entries());
@@ -28,7 +30,7 @@ async function fetchAllMovies(event) {
 
     if (response.ok) {
         const movieList = await response.json();
-        const movieTable = document.querySelector(".movieTable");
+        const movieTable = document.querySelector(".allMoviesTable");
         movieTable.innerHTML = `<tr> 
                                     <th>ID</th> 
                                     <th>Title</th> 
@@ -54,6 +56,33 @@ async function fetchAllMovies(event) {
         alert("Something went wrong");
     }
 
+}
+
+async function fetchSpecificMovie(event){
+    event.preventDefault();
+    const movieId = document.getElementById("getMovieId").value;
+
+    const response = await fetch("/api/movies/" + movieId);
+
+    if (response.ok) {
+        const movie = await response.json();
+        const movieTable = document.querySelector(".movieTable");
+        movieTable.innerHTML = `<tr> 
+                                    <th>ID</th> 
+                                    <th>Title</th> 
+                                    <th>Released</th> 
+                                    <th>Duration</th> 
+                                </tr> 
+                                <tr>
+                                    <td> ${movie.id} </td> 
+                                    <td> ${movie.title} </td> 
+                                    <td> ${movie.released} </td> 
+                                    <td> ${movie.duration} </td>
+                                </tr>`;
+    }
+    else {
+        alert("Something went wrong");
+    }
 }
 
 async function postMovie(event) {

@@ -13,10 +13,17 @@
         <h2>Get Movies</h2>
         <button class="getMovies">List All Movies</button>
         
-        <table class="movieTable"></table>
+        <table class="allMoviesTable"></table>
     </div>
     <div>
         <h2>Get Movie</h2>
+        <form class="getMovieForm">
+            <label for="id">Id:</label><br>
+            <input type="text" id="getMovieId" name="id" required><br><br>
+            <input type="submit" value="Get Movie">
+        </form>
+
+        <table class="movieTable"></table>
     </div>
     <div>
         <h2>Create New Movie</h2>
@@ -34,7 +41,7 @@
         <h2>Update Movie</h2>
         <form class="putMovieForm">
             <label for="id">Id:</label><br>
-            <input type="text" id="putId" name="id"><br>
+            <input type="text" id="putId" name="id" required><br>
             <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"><br>
             <label for="released">Released:</label><br>
@@ -48,7 +55,7 @@
         <h2>Delete Movie</h2>
         <form class="deleteMovieForm">
             <label for="id">Id:</label><br>
-            <input type="text" id="deleteId" name="id"><br><br>
+            <input type="text" id="deleteId" name="id" required><br><br>
             <input type="submit" value="Delete">
         </form>
     </div>
