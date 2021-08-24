@@ -6,6 +6,9 @@ function main() {
 
     const postMovieForm = document.querySelector(".postMovieForm");
     postMovieForm.addEventListener("submit", postMovie);
+
+    const updateMovieForm = document.querySelector(".putMovieForm");
+    updateMovieForm.addEventListener("submit", putMovie);
 }
 
 function makeFormToObjectInJson(form) {
@@ -55,6 +58,28 @@ async function postMovie(event) {
 
     const response = await fetch("/api/movies", {
         method: "POST",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        },
+        body: jsonDataToSend,
+    });
+
+    if (response.ok) {
+        alert(await response.text() + " was added to the DB");
+    }
+    else {
+        alert("something went wrong:\n" + await response.text());
+    }
+}
+
+async function putMovie(event) {
+    const movieId = document.getElementById("putId").value;    
+    
+    const jsonDataToSend = makeFormToObjectInJson(event.currentTarget);
+    
+    const response = await fetch("/api/movies/" + movieId, {
+        method: "PUT",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",

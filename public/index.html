@@ -10,13 +10,16 @@
 </head>
 <body>
     <div>
+        <h2>Get Movies</h2>
         <button class="getMovies">List All Movies</button>
-        <div>
-            <table class="movieTable"></table>
-        </div>
+        
+        <table class="movieTable"></table>
     </div>
-    <div>Get Movie</div>
     <div>
+        <h2>Get Movie</h2>
+    </div>
+    <div>
+        <h2>Create New Movie</h2>
         <form class="postMovieForm">
             <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"><br>
@@ -27,7 +30,22 @@
             <input type="submit" value="Submit">
         </form>
     </div>
-    <div>Put Movie</div>
-    <div>Delete Movie</div>
+    <div>
+        <h2>Update Movie</h2>
+        <form class="putMovieForm">
+            <label for="id">Id:</label><br>
+            <input type="text" id="putId" name="id"><br>
+            <label for="title">Title:</label><br>
+            <input type="text" id="title" name="title"><br>
+            <label for="released">Released:</label><br>
+            <input type="number" id="released" name="released"><br>
+            <label for="duration">Duration:</label><br>
+            <input type="number" id="duration" name="duration"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div>
+        <h2>Delete Movie</h2>
+    </div>
 </body>
 </html>

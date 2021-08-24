@@ -46,6 +46,7 @@ function postMovie(req, res) {
  * @param {Response} res
  */
 function updateMovie(req, res) {
+    //NEED TO CHANGE THIS SO YOU CANT CHANGE ID WHILE UPDATING
     const { id } = req.params;
     //const { title, released, duration } = req.body;
     //let movie = movieList.find(movie => movie.id == id);
