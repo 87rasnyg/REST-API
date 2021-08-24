@@ -1,4 +1,5 @@
 const { Request, Response } = require("express");
+const { move } = require("./movies.router");
 
 const movieList = [{
     id: 0,
@@ -14,6 +15,25 @@ const movieList = [{
  */
 function getMovies(req, res) {
     res.json(movieList);
+}
+
+/**
+ * Sends back the movie with matching id if found otherwise
+ * returns a 404 status code
+ * @param {Request} req
+ * @param {Response} res
+ */
+function getMovie(req, res) {
+    const { id } = req.params;
+
+    const movie = movieList.find(movie => movie.id == id);
+
+    if(movie){
+        res.status(200).json(movie);
+    }
+    else{
+        res.status(404).json("Mo movie with an id of " + id + " was found");
+    }
 }
 
 /**
@@ -83,6 +103,7 @@ function deleteMovie(req, res) {
 
 module.exports = {
     getMovies,
+    getMovie,
     postMovie,
     updateMovie,
     deleteMovie
