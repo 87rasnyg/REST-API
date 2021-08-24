@@ -9,6 +9,9 @@ function main() {
 
     const updateMovieForm = document.querySelector(".putMovieForm");
     updateMovieForm.addEventListener("submit", putMovie);
+
+    const deleteMovieForm = document.querySelector(".deleteMovieForm");
+    deleteMovieForm.addEventListener("submit", deleteMovie);
 }
 
 function makeFormToObjectInJson(form) {
@@ -88,7 +91,26 @@ async function putMovie(event) {
     });
 
     if (response.ok) {
-        alert(await response.text() + " was added to the DB");
+        alert(await response.text() + " was changed in the DB");
+    }
+    else {
+        alert("something went wrong:\n" + await response.text());
+    }
+}
+
+async function deleteMovie() {
+    const movieId = document.getElementById("deleteId").value;
+
+    const response = await fetch("/api/movies/" + movieId, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        }
+    });
+
+    if (response.ok) {
+        alert("Movie was removed from DB");
     }
     else {
         alert("something went wrong:\n" + await response.text());

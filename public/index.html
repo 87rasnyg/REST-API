@@ -24,10 +24,10 @@
             <label for="title">Title:</label><br>
             <input type="text" id="title" name="title"><br>
             <label for="released">Released:</label><br>
-            <input type="number" id="released" name="released"><br>
+            <input type="number" id="released" name="released" min="1888"><br>
             <label for="duration">Duration:</label><br>
             <input type="number" id="duration" name="duration"><br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Create">
         </form>
     </div>
     <div>
@@ -41,11 +41,16 @@
             <input type="number" id="released" name="released"><br>
             <label for="duration">Duration:</label><br>
             <input type="number" id="duration" name="duration"><br><br>
-            <input type="submit" value="Submit">
+            <input type="submit" value="Update">
         </form>
     </div>
     <div>
         <h2>Delete Movie</h2>
+        <form class="deleteMovieForm">
+            <label for="id">Id:</label><br>
+            <input type="text" id="deleteId" name="id"><br><br>
+            <input type="submit" value="Delete">
+        </form>
     </div>
 </body>
 </html>
