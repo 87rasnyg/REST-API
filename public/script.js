@@ -11,16 +11,12 @@ async function fetchAllMovies(event){
     const movieListDiv = document.querySelector(".movieList");
     movieListDiv.innerHTML = "";
 
-    for (const test in movieList){
-        const movieitem = document.createElement("dl");
+    movieList.forEach(movie => {
+        let movieitem = "<dt>Id</dt> <dd>- " + movie.id + "</dd>";
+        movieitem += "<dt>Title</dt> <dd>- " + movie.title + "</dd>";
+        movieitem += "<dt>Released</dt> <dd>- " + movie.released + "</dd>";
+        movieitem += "<dt>Duration</dt> <dd>- " + movie.duration + "</dd>";
 
-        // movieitem.innerHTML = "<dt>Id</dt> <dd>- " + movie.id + "</dd>";
-        // movieitem.innerHTML += "<dt>Title</dt> <dd>- " + movie.title + "</dd>";
-        // movieitem.innerHTML += "<dt>Released</dt> <dd>- " + movie.released + "</dd>";
-        // movieitem.innerHTML += "<dt>Duration</dt> <dd>- " + movie.duration + "</dd>";
-
-        console.log(movieList);
-
-        //movieListDiv.innerHTML += movieitem;
-    }
+        movieListDiv.innerHTML += movieitem;
+    }); 
 }
