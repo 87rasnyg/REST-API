@@ -84,7 +84,7 @@ async function postMovie(event) {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
+            Accept: "application/json"
         },
         body: jsonDataToSend,
     });
@@ -106,7 +106,7 @@ async function putMovie(event) {
         method: "PUT",
         headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
+            Accept: "application/json"
         },
         body: jsonDataToSend,
     });
@@ -126,7 +126,7 @@ async function deleteMovie() {
         method: "DELETE",
         headers: {
             "Content-Type": "application/json",
-            Accept: "application/json",
+            Accept: "application/json"
         }
     });
 
