@@ -1,20 +1,14 @@
 [
   {
-    "id": 0,
+    "id": "1d06a69b-3849-444b-b0bb-d18e2814fd22",
     "title": "Gremlings",
     "released": "1984",
     "duration": "107"
   },
   {
-    "id": 1,
+    "id": "79a930bc-df2b-40ce-8a3a-dcaf8ee5546e",
     "title": "The Godfather",
     "released": "1972",
     "duration": "177"
-  },
-  {
-    "id": 2,
-    "title": "The Matrix",
-    "released": "1999",
-    "duration": "137"
   }
 ]

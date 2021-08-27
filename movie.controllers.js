@@ -1,12 +1,6 @@
 const { Request, Response } = require("express");
 const fs = require("fs");
-
-// const movieList = [{
-//     id: 0,
-//     title: "Gremlings",
-//     released: 1984,
-//     duration: 107
-// }];
+const { v4: uuidv4 } = require("uuid");
 
 /**
  * Sends back the full list of movies in DB 
@@ -22,7 +16,7 @@ function getMovies(req, res) {
     }
     else
     {
-        res.status(404).json("something went wrong");
+        res.status(404).json("Something has gone wrong");
     }
 }
 
@@ -56,15 +50,9 @@ function postMovie(req, res) {
 
     const movieList = getMovieListFromJsonFile();
 
-    //get current index
-    if (movieList.length > 0) {
-        id = movieList[movieList.length - 1].id + 1;
-    }
-    else {
-        id = 0;
-    }
+    const id = uuidv4();
 
-    const movie = { id: id, ...req.body };
+    const movie = { id: id, title: req.body.title, released: req.body.released, duration: req.body.duration };
 
     movieList.push(movie);
 
@@ -81,16 +69,21 @@ function postMovie(req, res) {
  * @param {Response} res
  */
 function updateMovie(req, res) {
-    //NEED TO CHANGE THIS SO YOU CANT CHANGE ID WHILE UPDATING
     const { id } = req.params;
     let movieList = getMovieListFromJsonFile()
 
-    //const { title, released, duration } = req.body;
-    //let movie = movieList.find(movie => movie.id == id);
     const movieIndex = movieList.findIndex(movie => movie.id == id);
 
     if (movieIndex >= 0) {
-        const updatedMovie = { id: parseInt(id), ...req.body };
+
+        // Movie should keep old values i no values was given
+        const updatedMovie = { 
+            id: id,
+            title: req.body.title ? req.body.title : movieList[movieIndex].title,
+            released: req.body.released ? req.body.released : movieList[movieIndex].released,
+            duration: req.body.duration ? req.body.duration : movieList[movieIndex].duration
+        };
+
         movieList.splice(movieIndex, 1, updatedMovie);
 
         overwriteJsonFileWithData(movieList);
@@ -126,18 +119,23 @@ function deleteMovie(req, res) {
     }
 }
 
+/**
+ * Gets a list and overwrites the Json file with the content in the List
+ * @param {*} movieList 
+ */
 function overwriteJsonFileWithData(movieList) {
     const data = JSON.stringify(movieList, null, 2);
 
-    console.log(data);
-
     fs.writeFile("movies.json", data, (err) => {
         if (err) {
-            console.log(err);
+            throw err;
         }
     });
 }
 
+/**
+ * Creates a list of movie that it reads from the Json file
+ */
 function getMovieListFromJsonFile() {
 
     const data = fs.readFileSync("./movies.json", "utf-8", (err) => {
