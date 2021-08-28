@@ -3,7 +3,7 @@ Jag har skapat ett REST-API som hanterar information om filmer. Varje film har i
 
 ## Uppfyllda krav:
 ### Krav för godkänt:
-1. Projektet innehåller minst 4 st. endpoints (GET, POST, PUT & DELETE för en resurs) [JA]
+1. Projektet innehåller minst 4 st. endpoints (GET, POST, PUT & DELETE för en resurs) [**JA**]
 2. Samtliga endpoints skall kunna nås via en REST Client fil (.rest|.http) [JA]
 3. Datan som API:et hanterar sparas lokalt i serverfilen [JA (till en början, bytte senare till Json)]
 4. Git & GitHub har använts [JA (främst Git, men jag laddade upp det till Github också)]
@@ -19,7 +19,7 @@ Jag har skapat ett REST-API som hanterar information om filmer. Varje film har i
 
 Själva API:et innehåller fyra JavaScript-filer, nämligen: server, movies.router, movie.controllers och movie.validation. Jag valde det här upplägget för att försöka se till att varje JavaScript-fil har ett specifikt ansvarsområde och göra koden lite tydligare. 
 
-server.js ser till att API:et lyssnar på port 3000 samt att ett anrop till ” http://localhost:3000/” utan någon extra information returnerar en hemsida.  server.js är även kopplad till movies.router.js.
+server.js ser till att API:et lyssnar på port 3000 samt att ett anrop till ”`http://localhost:3000/`” utan någon extra information returnerar en hemsida.  server.js är även kopplad till movies.router.js.
 
 movies.router.js innehåller kopplingar till både movie.controllers och movie.validation. Syftet med den här filen är att se till att anropen API:et tar emot hanteras av rätt funktioner. I ett sådant här litet projekt skulle det fungera lika bra att slopa den här filen och lägga den här koden i server.js. Jag hade dock två anledningar till att bryta ut den här koden till en egen fil. Den första anledningen var att detta gör det enklare att bygga ut API:et ifall det skulle behövas. Den andra och huvudsakliga anledningen var att vi just hade gått igenom under en lektion att man kan göra på det här sättet och jag ville testa och se om jag kunde få det att fungera.
 
