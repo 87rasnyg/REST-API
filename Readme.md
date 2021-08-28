@@ -3,7 +3,7 @@ Jag har skapat ett REST-API som hanterar information om filmer. Varje film har i
 
 ## Uppfyllda krav:
 ### Krav för godkänt:
-1. Projektet innehåller minst 4 st. endpoints (GET, POST, PUT & DELETE för en resurs) [ **JA** ]
+1. Projektet innehåller minst 4 st. endpoints (GET, POST, PUT & DELETE för en resurs) **[JA]**
 2. Samtliga endpoints skall kunna nås via en REST Client fil (.rest|.http) [JA]
 3. Datan som API:et hanterar sparas lokalt i serverfilen [JA (till en början, bytte senare till Json)]
 4. Git & GitHub har använts [JA (främst Git, men jag laddade upp det till Github också)]
