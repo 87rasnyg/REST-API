@@ -17,6 +17,7 @@ Jag har skapat ett REST-API som hanterar information om filmer. Varje film har i
 4. Ett simpelt klient-gränssnitt skall finnas för att anropa API:ets olika endpoints, samt visa upp resultatet vid GET anrop **[JA]**
 5. Ytterligare en GET endpoint skall läggas till där det går att hämta ett specifikt objekt **[JA]**
 
+### Detaljer om API:
 Själva API:et innehåller fyra JavaScript-filer, nämligen: server, movies.router, movie.controllers och movie.validation. Jag valde det här upplägget för att försöka se till att varje JavaScript-fil har ett specifikt ansvarsområde och göra koden lite tydligare. 
 
 server.js ser till att API:et lyssnar på port 3000 samt att ett anrop till ”`http://localhost:3000/`” utan någon extra information returnerar en hemsida. server.js är även kopplad till movies.router.js.
