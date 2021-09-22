@@ -68,17 +68,10 @@ async function fetchSpecificMovie(event){
 
     if (response.ok) {
         const movie = await response.json();
-        const movieTable = document.querySelector(".movieTable");
-        movieTable.innerHTML = `<tr> 
-                                    <th>Title</th> 
-                                    <th>Released</th> 
-                                    <th>Duration</th> 
-                                </tr> 
-                                <tr>
-                                    <td> ${movie.title} </td> 
-                                    <td> ${movie.released} </td> 
-                                    <td> ${movie.duration} </td>
-                                </tr>`;
+        document.getElementById("putId").value = movie.id;
+        document.getElementById("putTitle").value = movie.title;
+        document.getElementById("putReleased").value = movie.released;
+        document.getElementById("putDuration").value = movie.duration;
     }
     else {
         alert("Something went wrong:\n" + await response.text());

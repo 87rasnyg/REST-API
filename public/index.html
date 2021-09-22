@@ -16,16 +16,6 @@
         <table class="allMoviesTable"></table>
     </div>
     <div>
-        <h2>Get Movie</h2>
-        <form class="getMovieForm">
-            <label for="id">Id:</label><br>
-            <input type="text" id="getMovieId" name="id" required><br><br>
-            <input type="submit" value="Get Movie">
-        </form>
-
-        <table class="movieTable"></table>
-    </div>
-    <div>
         <h2>Create New Movie</h2>
         <form class="postMovieForm">
             <label for="title">Title:</label><br>
@@ -38,16 +28,24 @@
         </form>
     </div>
     <div>
+        <h2>Get Movie</h2>
+        <form class="getMovieForm">
+            <label for="id">Id:</label><br>
+            <input type="text" id="getMovieId" name="id" required><br><br>
+            <input type="submit" value="Get Movie">
+        </form>
+    </div>
+    <div>
         <h2>Update Movie</h2>
         <form class="putMovieForm">
             <label for="id">Id:</label><br>
             <input type="text" id="putId" name="id" required><br>
             <label for="title">Title:</label><br>
-            <input type="text" id="title" name="title"><br>
+            <input type="text" id="putTitle" name="title"><br>
             <label for="released">Released:</label><br>
-            <input type="number" id="released" name="released"><br>
+            <input type="number" id="putReleased" name="released"><br>
             <label for="duration">Duration:</label><br>
-            <input type="number" id="duration" name="duration"><br><br>
+            <input type="number" id="putDuration" name="duration"><br><br>
             <input type="submit" value="Update">
         </form>
     </div>
